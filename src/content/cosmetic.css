@@ -1,0 +1,142 @@
+/*
+ * LeanFB cosmetic filters.
+ *
+ * Every rule is gated by a class on <html>, so a disabled feature costs nothing
+ * at runtime: the selector is never evaluated. This is the cheap half of the
+ * extension - no JS, no observers, just native CSS matching.
+ *
+ * Feed units use height:0 + overflow:hidden instead of display:none because
+ * Facebook virtualises the feed; collapsing the box keeps its scroll anchors
+ * intact and avoids re-render churn.
+ */
+
+/* ------------------------------------------------------------------ *
+ * Elements hidden at runtime by the text filter
+ * ------------------------------------------------------------------ */
+.lf-hidden {
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+}
+
+/* ------------------------------------------------------------------ *
+ * Sponsored posts in the feed
+ * ------------------------------------------------------------------ */
+html.lf-sponsored div[aria-posinset]:has(a[href*="ads/about"]),
+html.lf-sponsored div[aria-posinset]:has(a[attributionsrc*="privacy_sandbox"]),
+html.lf-sponsored div[aria-posinset]:has(a[attributionsrc]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="Advertiser"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="Advertiser link"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="Sponsored"]),
+html.lf-sponsored div[aria-posinset]:has(span[aria-label="Sponsored"]),
+html.lf-sponsored div[aria-posinset]:has([aria-label="Ad"]),
+html.lf-sponsored div[aria-posinset]:has([aria-label="Paid"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="Gesponsert"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="Sponsorisé"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="Patrocinado"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="Sponsorizzato"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="Sponsrad"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="Được tài trợ"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="広告"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="广告"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="스폰서"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="Ditaja"]),
+html.lf-sponsored div[aria-posinset]:has(a[aria-label="Bersponsor"]),
+html.lf-sponsored div[aria-posinset]:has(div[data-ad-preview="message"]),
+html.lf-sponsored div[aria-posinset]:has(a[href^="/ads/about"]) {
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Older / alternate feed containers. */
+html.lf-sponsored li[aria-label="Sponsored"],
+html.lf-sponsored article[data-store*="is_sponsored.1"],
+html.lf-sponsored div[data-ad],
+html.lf-sponsored div[data-adblock-hash] {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------------ *
+ * Right column ads
+ * ------------------------------------------------------------------ */
+html.lf-rightrail div[role="complementary"] a[aria-labelledby][href^="https://l.facebook.com"],
+html.lf-rightrail div[role="complementary"] a[aria-labelledby][href][target="_blank"][attributionsrc],
+html.lf-rightrail div[role="complementary"] div[data-visualcompletion]:has(a[target="rhcad2"]),
+html.lf-rightrail div[role="complementary"] div[data-pagelet^="RightRailAd"],
+html.lf-rightrail div[data-pagelet^="RightRailAd"],
+html.lf-rightrail #pagelet_ego_pane,
+html.lf-rightrail #pagelet_side_ads {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------------ *
+ * Marketplace ad rows
+ * ------------------------------------------------------------------ */
+html.lf-marketplace div[data-testid="marketplace_pdp_component"] div[style^="max-height:"] div[style^="max-height:"] > div > div:has(> div a[href^="/ads/"]),
+html.lf-marketplace div[class][style^="max-width:"]:has(> span > div a[href^="/ads/about/"]),
+html.lf-marketplace div[class][style^="max-width:"]:has(> span > div > a[target="_blank"]:not([href^="/marketplace/"])),
+html.lf-marketplace a[href*="ads/about"] {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------------ *
+ * Stories tray
+ * ------------------------------------------------------------------ */
+html.lf-stories div[data-pagelet="Stories"],
+html.lf-stories div[aria-label="Stories"][role="region"],
+html.lf-stories div[aria-label="Stories"][role="navigation"],
+html.lf-stories #fb_stories_card_root,
+html.lf-stories #MStoriesTray {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------------ *
+ * Reels and Watch entry points
+ * ------------------------------------------------------------------ */
+html.lf-reels div[role="navigation"] a[href="/reel/?s=bookmark"],
+html.lf-reels div[role="navigation"] a[href*="/reel/?s=bookmark"],
+html.lf-reels div[aria-label="Reels"] {
+  display: none !important;
+}
+
+html.lf-watch div[role="navigation"] a[href="/watch/?ref=tab"],
+html.lf-watch div[role="navigation"] a[href*="/watch/?ref=tab"] {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------------ *
+ * Left rail clutter
+ * ------------------------------------------------------------------ */
+html.lf-leftrail div[role="navigation"] a[href*="/gaming/"],
+html.lf-leftrail div[role="navigation"] a[href*="/games/"],
+html.lf-leftrail div[role="navigation"] a[href*="/fundraisers/"],
+html.lf-leftrail div[role="navigation"] a[href*="/weather/"] {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------------ *
+ * Suggested / People You May Know cards in the right column
+ * ------------------------------------------------------------------ */
+html.lf-pymk div[role="complementary"] div[data-pagelet^="RightRail"] div:has(> div a[href*="/friends/"][href*="fb_ref"]),
+html.lf-suggested div[role="complementary"] div[data-pagelet^="RightRail"] div:has(a[href^="/pages/?category="]) {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------------ *
+ * Motion reduction
+ * ------------------------------------------------------------------ */
+html.lf-anim *,
+html.lf-anim *::before,
+html.lf-anim *::after {
+  animation-duration: 1ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 1ms !important;
+  scroll-behavior: auto !important;
+}

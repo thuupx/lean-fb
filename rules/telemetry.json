@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||facebook.com/ajax/bz",
+      "initiatorDomains": ["facebook.com"],
+      "excludedInitiatorDomains": ["adsmanager.facebook.com", "business.facebook.com", "developers.facebook.com"],
+      "resourceTypes": ["xmlhttprequest", "ping", "image", "other"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||facebook.com/ajax/bnzai",
+      "initiatorDomains": ["facebook.com"],
+      "excludedInitiatorDomains": ["adsmanager.facebook.com", "business.facebook.com", "developers.facebook.com"],
+      "resourceTypes": ["xmlhttprequest", "ping", "image", "other"]
+    }
+  },
+  {
+    "id": 3,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||facebook.com/tr/",
+      "initiatorDomains": ["facebook.com"],
+      "excludedInitiatorDomains": ["adsmanager.facebook.com", "business.facebook.com", "developers.facebook.com"],
+      "resourceTypes": ["xmlhttprequest", "ping", "image", "other", "sub_frame"]
+    }
+  },
+  {
+    "id": 4,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||facebook.com/ajax/logging_client_events",
+      "initiatorDomains": ["facebook.com"],
+      "excludedInitiatorDomains": ["adsmanager.facebook.com", "business.facebook.com", "developers.facebook.com"],
+      "resourceTypes": ["xmlhttprequest", "ping", "other"]
+    }
+  }
+]

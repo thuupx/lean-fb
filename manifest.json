@@ -1,0 +1,90 @@
+{
+  "manifest_version": 3,
+  "name": "LeanFB - Facebook Lite Mode",
+  "short_name": "LeanFB",
+  "version": "0.1.0",
+  "description": "Removes Facebook ads, tracking beacons and clutter. CSS-first and declarative, so it costs almost no CPU.",
+  "minimum_chrome_version": "111",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://*.facebook.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "LeanFB",
+    "default_popup": "src/ui/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.facebook.com/*"],
+      "exclude_matches": [
+        "https://*.facebook.com/ajax/*",
+        "https://*.facebook.com/ai.php*",
+        "https://*.facebook.com/xti.php*",
+        "https://developers.facebook.com/*",
+        "https://*.facebook.com/business/*",
+        "https://*.facebook.com/ads/manager*",
+        "https://*.facebook.com/adsmanager*",
+        "https://adsmanager.facebook.com/*"
+      ],
+      "js": ["src/content/prune.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": false
+    },
+    {
+      "matches": ["https://*.facebook.com/*"],
+      "exclude_matches": [
+        "https://*.facebook.com/ajax/*",
+        "https://*.facebook.com/ai.php*",
+        "https://*.facebook.com/xti.php*",
+        "https://developers.facebook.com/*",
+        "https://*.facebook.com/business/*",
+        "https://*.facebook.com/ads/manager*",
+        "https://*.facebook.com/adsmanager*",
+        "https://adsmanager.facebook.com/*"
+      ],
+      "js": ["src/lib/settings.js", "src/content/boot.js"],
+      "css": ["src/content/cosmetic.css"],
+      "run_at": "document_start",
+      "world": "ISOLATED",
+      "all_frames": false
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ads",
+        "enabled": true,
+        "path": "rules/ads.json"
+      },
+      {
+        "id": "telemetry",
+        "enabled": true,
+        "path": "rules/telemetry.json"
+      },
+      {
+        "id": "thirdparty",
+        "enabled": false,
+        "path": "rules/thirdparty.json"
+      }
+    ]
+  }
+}

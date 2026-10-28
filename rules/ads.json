@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "requestDomains": ["ads.facebook.com", "an.facebook.com"],
+      "initiatorDomains": ["facebook.com"],
+      "excludedInitiatorDomains": ["adsmanager.facebook.com", "business.facebook.com", "developers.facebook.com"],
+      "resourceTypes": ["script", "image", "xmlhttprequest", "sub_frame", "media", "ping", "other"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||facebook.com/audiencenetwork/",
+      "initiatorDomains": ["facebook.com"],
+      "excludedInitiatorDomains": ["adsmanager.facebook.com", "business.facebook.com", "developers.facebook.com"],
+      "resourceTypes": ["script", "image", "xmlhttprequest", "sub_frame", "other"]
+    }
+  },
+  {
+    "id": 3,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||facebook.com/ads/adiframe",
+      "initiatorDomains": ["facebook.com"],
+      "excludedInitiatorDomains": ["adsmanager.facebook.com", "business.facebook.com", "developers.facebook.com"],
+      "resourceTypes": ["sub_frame", "xmlhttprequest", "script"]
+    }
+  },
+  {
+    "id": 4,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||facebook.com/adnw/",
+      "initiatorDomains": ["facebook.com"],
+      "excludedInitiatorDomains": ["adsmanager.facebook.com", "business.facebook.com", "developers.facebook.com"],
+      "resourceTypes": ["sub_frame", "xmlhttprequest", "script", "image"]
+    }
+  },
+  {
+    "id": 5,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||facebook.com/ads/redirect",
+      "initiatorDomains": ["facebook.com"],
+      "excludedInitiatorDomains": ["adsmanager.facebook.com", "business.facebook.com", "developers.facebook.com"],
+      "resourceTypes": ["sub_frame", "xmlhttprequest", "image"]
+    }
+  },
+  {
+    "id": 6,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "requestDomains": ["adn.fbcdn.net"],
+      "initiatorDomains": ["facebook.com"],
+      "excludedInitiatorDomains": ["adsmanager.facebook.com", "business.facebook.com", "developers.facebook.com"],
+      "resourceTypes": ["script", "image", "xmlhttprequest", "media", "sub_frame"]
+    }
+  }
+]

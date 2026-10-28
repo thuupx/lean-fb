@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "requestDomains": [
+        "doubleclick.net",
+        "googlesyndication.com",
+        "googleadservices.com",
+        "google-analytics.com",
+        "googletagmanager.com",
+        "googletagservices.com",
+        "adservice.google.com",
+        "amazon-adsystem.com",
+        "adsrvr.org",
+        "adnxs.com",
+        "criteo.com",
+        "criteo.net",
+        "taboola.com",
+        "outbrain.com",
+        "scorecardresearch.com",
+        "quantserve.com",
+        "rubiconproject.com",
+        "pubmatic.com",
+        "openx.net",
+        "casalemedia.com",
+        "33across.com",
+        "smartadserver.com",
+        "sharethrough.com",
+        "teads.tv",
+        "spotxchange.com",
+        "tremorhub.com",
+        "hotjar.com",
+        "mixpanel.com",
+        "segment.io",
+        "segment.com",
+        "amplitude.com",
+        "branch.io",
+        "appsflyer.com",
+        "adjust.com",
+        "kochava.com",
+        "newrelic.com",
+        "bugsnag.com"
+      ],
+      "initiatorDomains": ["facebook.com"],
+      "excludedInitiatorDomains": ["adsmanager.facebook.com", "business.facebook.com", "developers.facebook.com"],
+      "resourceTypes": ["script", "image", "xmlhttprequest", "sub_frame", "ping", "media", "other"]
+    }
+  }
+]

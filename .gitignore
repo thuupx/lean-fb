@@ -1,0 +1,15 @@
+# Chrome writes these when an unpacked MV3 extension with DNR rulesets loads
+_metadata/
+generated_indexed_rulesets/
+
+# Local HAR captures: personal browsing data, tens of MB
+*.har
+*-har/
+
+# Editor / OS
+.DS_Store
+*.swp
+
+# Build output, if anyone adds one
+dist/
+*.zip

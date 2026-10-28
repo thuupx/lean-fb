@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LeanFB</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="head">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <div class="brand-text">
+        <h1>LeanFB</h1>
+        <p id="status">Facebook, minus the ads</p>
+      </div>
+    </div>
+    <label class="switch master" title="Turn LeanFB on or off">
+      <input type="checkbox" data-path="enabled" role="switch">
+      <span class="track"></span>
+    </label>
+  </header>
+
+  <section class="stats">
+    <div class="stat">
+      <span class="stat-value" id="ads-count">0</span>
+      <span class="stat-label">ads blocked</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" id="suggestions-count">0</span>
+      <span class="stat-label">suggestions hidden</span>
+    </div>
+  </section>
+
+  <div class="site-row">
+    <span id="site-host" class="site-host">facebook.com</span>
+    <button id="allowlist" class="ghost" type="button">Allowlist site</button>
+  </div>
+
+  <div class="presets" role="group" aria-label="Preset">
+    <button type="button" data-preset="light">Light</button>
+    <button type="button" data-preset="balanced">Balanced</button>
+    <button type="button" data-preset="aggressive">Aggressive</button>
+  </div>
+
+  <main id="panels">
+    <section class="group">
+      <h2>Ads</h2>
+      <label class="row">
+        <span class="row-text">
+          <span class="row-title">Sponsored posts</span>
+          <span class="row-hint">Hide ads in the feed with CSS</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-path="ads.sponsored" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text">
+          <span class="row-title">Prune ad payloads</span>
+          <span class="row-hint">Drop sponsored nodes before they render</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-path="ads.pruneGraphql" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text">
+          <span class="row-title">Right column ads</span>
+          <span class="row-hint">Remove ad boxes beside the feed</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-path="ads.rightRail" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text">
+          <span class="row-title">Marketplace ads</span>
+          <span class="row-hint">Hide promoted listings</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-path="ads.marketplace" role="switch"><span class="track"></span></span>
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Clutter</h2>
+      <label class="row">
+        <span class="row-text"><span class="row-title">Stories tray</span></span>
+        <span class="switch"><input type="checkbox" data-path="clutter.stories" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text"><span class="row-title">Reels entry</span></span>
+        <span class="switch"><input type="checkbox" data-path="clutter.reels" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text"><span class="row-title">Watch entry</span></span>
+        <span class="switch"><input type="checkbox" data-path="clutter.watch" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text"><span class="row-title">People You May Know</span></span>
+        <span class="switch"><input type="checkbox" data-path="clutter.pymk" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text"><span class="row-title">Suggested posts</span></span>
+        <span class="switch"><input type="checkbox" data-path="clutter.suggested" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text"><span class="row-title">Your group suggestions</span></span>
+        <span class="switch"><input type="checkbox" data-path="clutter.groupSuggestions" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text"><span class="row-title">Left rail extras</span></span>
+        <span class="switch"><input type="checkbox" data-path="clutter.leftRail" role="switch"><span class="track"></span></span>
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Network</h2>
+      <label class="row">
+        <span class="row-text">
+          <span class="row-title">Ad endpoints</span>
+          <span class="row-hint">Block ad serving hosts</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-path="net.adEndpoints" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text">
+          <span class="row-title">Telemetry beacons</span>
+          <span class="row-hint">Block logging and pixel calls</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-path="net.telemetry" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text">
+          <span class="row-title">Third-party trackers</span>
+          <span class="row-hint">Experimental; reload to apply</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-path="net.thirdParty" role="switch"><span class="track"></span></span>
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Performance</h2>
+      <label class="row">
+        <span class="row-text">
+          <span class="row-title">Pause autoplay</span>
+          <span class="row-hint">Stop muted feed videos from starting</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-path="perf.pauseAutoplay" role="switch"><span class="track"></span></span>
+      </label>
+      <label class="row">
+        <span class="row-text">
+          <span class="row-title">Reduce motion</span>
+          <span class="row-hint">Cut animations and transitions</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-path="perf.reduceAnimations" role="switch"><span class="track"></span></span>
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Interface</h2>
+      <label class="row">
+        <span class="row-text">
+          <span class="row-title">Status card</span>
+          <span class="row-hint">Fills the empty right-rail ad slot</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-path="ui.railCard" role="switch"><span class="track"></span></span>
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Activity log</h2>
+      <label class="row">
+        <span class="row-text">
+          <span class="row-title">Record blocked items</span>
+          <span class="row-hint">Time, source and what was hidden</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-path="ui.debugLog" role="switch"><span class="track"></span></span>
+      </label>
+      <div id="log-wrap" class="log-wrap" hidden>
+        <div id="log-list" class="log-list"></div>
+        <button id="log-clear" class="ghost" type="button">Clear</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Custom filter</h2>
+      <label class="field">
+        <span class="row-hint">One per line, matched against post text and its links. Plain text, <code>/regex/i</code>, or a glob with <code>*</code> like <code>https://shop.example.com/*</code>.</span>
+        <textarea id="keywords" rows="3" spellcheck="false" placeholder="crypto&#10;/giveaway|free\s+iphone/i"></textarea>
+        <span id="filter-error" class="row-hint" style="color:#dc2626"></span>
+      </label>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <button id="pick" class="ghost" type="button">Hide an ad…</button>
+    <button id="reload" class="ghost" type="button">Reload</button>
+    <span id="version" class="version"></span>
+  </footer>
+
+  <script src="../lib/settings.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
